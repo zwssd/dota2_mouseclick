@@ -94,7 +94,7 @@ def t5():
     while (count < 10000):
         if RUN == 1:
             break
-        mouse_move(747,509)
+        mouse_move(947,509)
         mouse_click()
         time_sleep(2)
         count = count+1
