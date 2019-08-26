@@ -48,10 +48,15 @@ def mouse_move(x,y):
 
 def onKeyboardEvent(event):
     global RUN
+    #获得鼠标位置
+    if event.Key == "F7":
+        RUN = 0
+        thread.start_new_thread(t7, ())
+        print "f7"
     if event.Key == "F8":
         RUN = 0
         thread.start_new_thread(t8, ())
-        print "f10"
+        print "f8"
     if event.Key == "F10":
         RUN = 0
         thread.start_new_thread(t5, ())
@@ -111,13 +116,17 @@ def t5():
         time_sleep(2)
         count = count+1
         print count
+def t7():
+    pos = win32api.GetCursorPos()
+    print pos[0],pos[1]
 def t8():
     global RUN
     count = 0
     while (count < 100000):
         if RUN == 1:
             break
-        mouse_move(random.randint(1,1900),random.randint(1,1000))
+        #避开左下解的小地图
+        mouse_move(random.randint(250,1900),random.randint(1,850))
         win32api.keybd_event(101,0,0,0) #5键位码是101
         win32api.keybd_event(101,0,win32con.KEYEVENTF_KEYUP,0)
         mouse_click()
