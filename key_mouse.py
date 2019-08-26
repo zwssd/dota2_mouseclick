@@ -126,7 +126,7 @@ def t8():
         if RUN == 1:
             break
         #避开左下解的小地图
-        mouse_move(random.randint(250,1900),random.randint(1,850))
+        mouse_move(random.randint(250,1800),random.randint(100,850))
         win32api.keybd_event(101,0,0,0) #5键位码是101
         win32api.keybd_event(101,0,win32con.KEYEVENTF_KEYUP,0)
         mouse_click()
