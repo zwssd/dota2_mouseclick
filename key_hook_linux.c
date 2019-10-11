@@ -46,7 +46,7 @@ int find_event(char *sub_buff)
  
 	fstat(iFd, &tStat);
 	 /* mmap the file to mem */
-	file_buff = (unsigned char *)mmap(NULL , tStat.st_size, PROT_READ |         PROT_WRITE, MAP_SHARED, iFd, 0);
+	file_buff = (unsigned char *)mmap(NULL , tStat.st_size, PROT_READ | PROT_WRITE, MAP_SHARED, iFd, 0);
  
 	if (file_buff == (unsigned char *)-1) {
 		DBG_PRINTF("mmap error!\n");
@@ -79,15 +79,16 @@ int main(int argc, char **argv)
 	unsigned func_enable = 1;
  
 	number = find_event(keyword);
-    number = 49;
-    printf("%d",number-'0');
+	number = number - '0';
+    printf("%d\r\n",number);
 	DBG_PRINTF("found keyboard device:/dev/input/event%d\n",number-'0');
 	
-	sprintf(dev_path,"/dev/input/event%d",number-'0');
-	DBG_PRINTF("%s",dev_path);
+	sprintf(dev_path,"/dev/input/event%d",number);
+	printf("%s\r\n",dev_path);
+	
 	keys_fd = open(dev_path, O_RDONLY);
 	if(keys_fd <= 0) {
-		printf("open /dev/input/event%d device error!\n",number - '0');
+		printf("open /dev/input/event%d device error!\n",number);
 		return -1;
 	}
  

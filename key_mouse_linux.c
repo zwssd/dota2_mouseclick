@@ -133,7 +133,7 @@
         int i = 0;
         
         // 请保证该设备节点有写的权限
-        fd_kbd = open("/dev/input/event3", O_RDWR);
+        fd_kbd = open("/dev/input/event6", O_RDWR);
         if(fd_kbd <= 0) {
             printf("Can not open keyboard input file\n");
             return -1;
