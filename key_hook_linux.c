@@ -1,4 +1,3 @@
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <sys/types.h>
@@ -6,6 +5,9 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/mman.h>
+
+//多线程
+#include<pthread.h>
  
 #include <linux/input.h>
 #include <fcntl.h>
@@ -66,9 +68,14 @@ int find_event(char *sub_buff)
 	fclose(tFp);
 	return  number;
 }
- 
- 
-int main(int argc, char **argv)
+
+void thread_print(char *message){
+   		printf("[info] %s\n",message);
+
+}
+
+
+void monitor_keyboard(void)
 {
 	int number;
 	char *keyword="Handlers=sysrq kbd";
@@ -85,12 +92,76 @@ int main(int argc, char **argv)
 	
 	sprintf(dev_path,"/dev/input/event%d",number);
 	printf("%s\r\n",dev_path);
+	//设定本机的usb外接键盘
+	//sprintf(dev_path,"/dev/input/event12");
+
+	/*int i=0;
+	while(i<=100)
+    {
+        ++i;
+		printf(">>>>>%d",i);
+    }*/
+
+	printf("%s\r\n",dev_path);
+	
+	keys_fd = open(dev_path, O_RDONLY);
+	if(keys_fd <= 0) {
+		printf("open /dev/input/event%d device error!\n",number);
+		return;
+	}
+
+	while(1) {
+		if(read(keys_fd, &t, sizeof(t)) == sizeof(t)) {
+			if(t.type == EV_KEY)
+				if(t.value== 0 || t.value ==1 ) {
+					DBG_PRINTF("key %d %s\n", t.code, (t.value) ? "Pressed" : "Released");
+                    printf("key %d %s", t.code, (t.value) ? "Pressed" : "Released");
+					thread_print("|a|");
+ 
+					if(t.code == 68 && t.value == 1) {
+    					pthread_exit("Time thread finished!\n");
+						ctrl_down_flag = 1;
+						state = 1;
+					}
+					
+					if(t.code == 102 && ctrl_down_flag)
+						break;
+			}
+		}
+	}
+	close(keys_fd);
+}
+ 
+ 
+int main(int argc, char **argv)
+{
+	/*int number;
+	char *keyword="Handlers=sysrq kbd";
+	int keys_fd;
+	struct input_event t;
+	char dev_path[20];
+	unsigned char ctrl_down_flag = 0, state = 0;
+	unsigned func_enable = 1;
+ 
+	number = find_event(keyword);
+	number = number - '0';
+    printf("%d\r\n",number);
+	DBG_PRINTF("found keyboard device:/dev/input/event%d\n",number-'0');
+	
+	sprintf(dev_path,"/dev/input/event%d",number);
+	printf("%s\r\n",dev_path);
+	//设定本机的usb外接键盘
+	//sprintf(dev_path,"/dev/input/event12");
+
+	printf("%s\r\n",dev_path);
 	
 	keys_fd = open(dev_path, O_RDONLY);
 	if(keys_fd <= 0) {
 		printf("open /dev/input/event%d device error!\n",number);
 		return -1;
 	}
+
+	
  
 	while(1) {
 		if(read(keys_fd, &t, sizeof(t)) == sizeof(t)) {
@@ -130,7 +201,27 @@ int main(int argc, char **argv)
 					}
 			}
 		}
-	}	
-	close(keys_fd);
+	}	*/
+
+	//开始多线程
+    int ret;
+    void *thread_result;
+    pthread_t new_thread;
+
+    ret=pthread_create(&new_thread,NULL,(void*)monitor_keyboard,NULL);
+    if(ret!=0){
+        perror("thread creation failed!\n");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("waiting for new thread....\n");
+    ret=pthread_join(new_thread,&thread_result);
+    if(ret!=0){
+        perror("thread join failed!\n");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("thread joined, returned: %s\n",(char*)thread_result);
+
 	return 0;
 }
