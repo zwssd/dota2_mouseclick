@@ -90,24 +90,12 @@ B: PROP=0
 B: EV=40001
 B: SND=6
 
-I: Bus=0018 Vendor=06cb Product=cd41 Version=0100
-N: Name="SYNA7DB5:01 06CB:CD41 Touchpad"
-P: Phys=i2c-SYNA7DB5:01
-S: Sysfs=/devices/platform/AMDI0010:01/i2c-0/i2c-SYNA7DB5:01/0018:06CB:CD41.0001/input/input13
-U: Uniq=
-H: Handlers=event9 mouse0 
-B: PROP=5
-B: EV=1b
-B: KEY=e520 10000 0 0 0 0
-B: ABS=2e0800000000003
-B: MSC=20
-
 I: Bus=0019 Vendor=0000 Product=0000 Version=0000
 N: Name="Acer WMI hotkeys"
 P: Phys=wmi/input0
-S: Sysfs=/devices/virtual/input/input15
+S: Sysfs=/devices/virtual/input/input13
 U: Uniq=
-H: Handlers=kbd event10 rfkill 
+H: Handlers=kbd event9 rfkill 
 B: PROP=0
 B: EV=13
 B: KEY=1c0000 0 0 0 0 1600800000c00 300000 10000000000000 0
@@ -116,71 +104,41 @@ B: MSC=10
 I: Bus=0000 Vendor=0000 Product=0000 Version=0000
 N: Name="HD-Audio Generic HDMI/DP,pcm=3"
 P: Phys=ALSA
-S: Sysfs=/devices/pci0000:00/0000:00:08.1/0000:05:00.1/sound/card0/input16
+S: Sysfs=/devices/pci0000:00/0000:00:08.1/0000:05:00.1/sound/card0/input12
 U: Uniq=
-H: Handlers=event11 
+H: Handlers=event10 
 B: PROP=0
 B: EV=21
 B: SW=140
 
-I: Bus=0003 Vendor=093a Product=2510 Version=0111
-N: Name="PixArt USB Optical Mouse"
-P: Phys=usb-0000:05:00.3-3/input0
-S: Sysfs=/devices/pci0000:00/0000:00:08.1/0000:05:00.3/usb1/1-3/1-3:1.0/0003:093A:2510.0004/input/input21
-U: Uniq=
-H: Handlers=event15 mouse1 
-B: PROP=0
-B: EV=17
-B: KEY=70000 0 0 0 0
-B: REL=903
-B: MSC=10
-
-I: Bus=0003 Vendor=0408 Product=a060 Version=0001
-N: Name="HD WebCam: HD WebCam"
-P: Phys=usb-0000:05:00.3-1/button
-S: Sysfs=/devices/pci0000:00/0000:00:08.1/0000:05:00.3/usb1/1-1/1-1:1.0/input/input22
-U: Uniq=
-H: Handlers=kbd event16 
-B: PROP=0
-B: EV=3
-B: KEY=100000 0 0 0
-
-I: Bus=0001 Vendor=10ec Product=0255 Version=0001
-N: Name="HDA Digital PCBeep"
-P: Phys=card1/codec#0/beep0
-S: Sysfs=/devices/pci0000:00/0000:00:08.1/0000:05:00.6/sound/card1/input20
-U: Uniq=
-H: Handlers=kbd event17 
-B: PROP=0
-B: EV=40001
-B: SND=6
-
-I: Bus=0000 Vendor=0000 Product=0000 Version=0000
-N: Name="HD-Audio Generic Front Headphone"
-P: Phys=ALSA
-S: Sysfs=/devices/pci0000:00/0000:00:08.1/0000:05:00.6/sound/card1/input23
-U: Uniq=
-H: Handlers=event18 
-B: PROP=0
-B: EV=21
-B: SW=4
-
 I: Bus=0003 Vendor=1c4f Product=0026 Version=0110
 N: Name="SIGMACHIP USB Keyboard"
 P: Phys=usb-0000:05:00.3-2/input0
-S: Sysfs=/devices/pci0000:00/0000:00:08.1/0000:05:00.3/usb1/1-2/1-2:1.0/0003:1C4F:0026.0005/input/input24
+S: Sysfs=/devices/pci0000:00/0000:00:08.1/0000:05:00.3/usb1/1-2/1-2:1.0/0003:1C4F:0026.0002/input/input14
 U: Uniq=
-H: Handlers=sysrq kbd event12 leds 
+H: Handlers=sysrq kbd event11 leds 
 B: PROP=0
 B: EV=120013
 B: KEY=1000000000007 ff800000000007ff febeffdff3cfffff fffffffffffffffe
 B: MSC=10
 B: LED=7
 
+I: Bus=0018 Vendor=06cb Product=cd41 Version=0100
+N: Name="SYNA7DB5:01 06CB:CD41 Touchpad"
+P: Phys=i2c-SYNA7DB5:01
+S: Sysfs=/devices/platform/AMDI0010:01/i2c-0/i2c-SYNA7DB5:01/0018:06CB:CD41.0001/input/input16
+U: Uniq=
+H: Handlers=event12 mouse0 
+B: PROP=5
+B: EV=1b
+B: KEY=e520 10000 0 0 0 0
+B: ABS=2e0800000000003
+B: MSC=20
+
 I: Bus=0003 Vendor=1c4f Product=0026 Version=0110
 N: Name="SIGMACHIP USB Keyboard Consumer Control"
 P: Phys=usb-0000:05:00.3-2/input1
-S: Sysfs=/devices/pci0000:00/0000:00:08.1/0000:05:00.3/usb1/1-2/1-2:1.1/0003:1C4F:0026.0006/input/input25
+S: Sysfs=/devices/pci0000:00/0000:00:08.1/0000:05:00.3/usb1/1-2/1-2:1.1/0003:1C4F:0026.0003/input/input19
 U: Uniq=
 H: Handlers=kbd event13 
 B: PROP=0
@@ -193,11 +151,53 @@ B: MSC=10
 I: Bus=0003 Vendor=1c4f Product=0026 Version=0110
 N: Name="SIGMACHIP USB Keyboard System Control"
 P: Phys=usb-0000:05:00.3-2/input1
-S: Sysfs=/devices/pci0000:00/0000:00:08.1/0000:05:00.3/usb1/1-2/1-2:1.1/0003:1C4F:0026.0006/input/input26
+S: Sysfs=/devices/pci0000:00/0000:00:08.1/0000:05:00.3/usb1/1-2/1-2:1.1/0003:1C4F:0026.0003/input/input20
 U: Uniq=
 H: Handlers=kbd event14 
 B: PROP=0
 B: EV=13
 B: KEY=c000 10000000000000 0
 B: MSC=10
+
+I: Bus=0001 Vendor=10ec Product=0255 Version=0001
+N: Name="HDA Digital PCBeep"
+P: Phys=card1/codec#0/beep0
+S: Sysfs=/devices/pci0000:00/0000:00:08.1/0000:05:00.6/sound/card1/input18
+U: Uniq=
+H: Handlers=kbd event15 
+B: PROP=0
+B: EV=40001
+B: SND=6
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="HD-Audio Generic Front Headphone"
+P: Phys=ALSA
+S: Sysfs=/devices/pci0000:00/0000:00:08.1/0000:05:00.6/sound/card1/input21
+U: Uniq=
+H: Handlers=event16 
+B: PROP=0
+B: EV=21
+B: SW=4
+
+I: Bus=0003 Vendor=093a Product=2510 Version=0111
+N: Name="PixArt USB Optical Mouse"
+P: Phys=usb-0000:05:00.3-3/input0
+S: Sysfs=/devices/pci0000:00/0000:00:08.1/0000:05:00.3/usb1/1-3/1-3:1.0/0003:093A:2510.0004/input/input22
+U: Uniq=
+H: Handlers=event17 mouse1 
+B: PROP=0
+B: EV=17
+B: KEY=70000 0 0 0 0
+B: REL=903
+B: MSC=10
+
+I: Bus=0003 Vendor=0408 Product=a060 Version=0001
+N: Name="HD WebCam: HD WebCam"
+P: Phys=usb-0000:05:00.3-1/button
+S: Sysfs=/devices/pci0000:00/0000:00:08.1/0000:05:00.3/usb1/1-1/1-1:1.0/input/input23
+U: Uniq=
+H: Handlers=kbd event18 
+B: PROP=0
+B: EV=3
+B: KEY=100000 0 0 0
 

@@ -140,7 +140,7 @@
         }
         
         // 请保证该设备节点有写的权限
-        fd_mouse = open("/dev/input/event2", O_RDWR);
+        fd_mouse = open("/dev/input/event17", O_RDWR);
         if(fd_mouse <= 0) {
             printf("Can not open mouse input file\n");
             return -1;
@@ -149,10 +149,10 @@
         for (i = 0; i < 50; i++) {
             simulate_key(fd_mouse, BTN_LEFT);   //模拟按下鼠标左键
             //simulate_key(fd_mouse, BTN_RIGHT);  //模拟按下鼠标左键
-            if (i % 3 == 0)
-                simulate_key(fd_kbd, KEY_A);    //模拟按下键盘A键
+            //if (i % 3 == 0)
+            //    simulate_key(fd_kbd, KEY_A);    //模拟按下键盘A键
             //模拟鼠标相对上次x和y轴相应移动10个像素
-            //simulate_mouse(fd_mouse, 20, 20);
+            simulate_mouse(fd_mouse, 20, 20);
             sleep(1);
         }
         
